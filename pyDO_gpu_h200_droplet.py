@@ -13,9 +13,9 @@ load_dotenv()
 
 # Configuration
 TOKEN = os.getenv('DIGITALOCEAN_TOKEN_CREATE', "your_digitalocean_api_token_here")
-DOMAIN = os.getenv('DOMAIN', "sdappnet.cloud")
-VPC_UUID = os.getenv('VPC_UUID', "d7ad8c4c-6258-4656-82a5-51af9523f641")
-PASSWORD = os.getenv('DROPLET_PASSWORD', "FuckYou11!!a")
+DOMAIN = os.getenv('DOMAIN', "example.com")
+VPC_UUID = os.getenv('VPC_UUID', "yout_vpc_uuid")
+PASSWORD = os.getenv('DROPLET_PASSWORD', "YourPassword1234!")
 
 # GPU Droplet size - using GPU-optimized droplet (H100)
 GPU_SIZE = "gpu-h100x1-80gb"  # 1x H100 GPU, 80GB VRAM

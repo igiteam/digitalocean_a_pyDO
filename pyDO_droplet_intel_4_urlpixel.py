@@ -47,12 +47,12 @@ runcmd:
     
     # Base configuration from your curl command
     config = {
-        "name": f"ubuntu-s-1vcpu-1gb-amd-lon1-{random_id}",
+        "name": f"ubuntu-s-1vcpu-512mb-10gb-lon1-{random_id}",
         "region": "lon1",
-        "size": "s-1vcpu-1gb-amd",
+        "size": "s-1vcpu-512mb-10gb",
         "image": "ubuntu-24-04-x64",
         "vpc_uuid": VPC_UUID,
-        "tags": ["python-sdk", "automated", "password-auth", "wine-subdomain"],
+        "tags": ["python-sdk", "automated", "password-auth", "img-subdomain"],
         "monitoring": True,
         "ipv6": False,
         "with_droplet_agent": True,
@@ -187,15 +187,15 @@ def list_domain_records(client):
         if response and 'domain_records' in response:
             records = response['domain_records']
             if records:
-                wine_record_found = False
+                img_record_found = False
                 for record in records:
                     if record['type'] == 'A':
                         display_name = f"{record['name']}.{DOMAIN}" if record['name'] != '@' else DOMAIN
                         print(f"  • {record['type']} {display_name} -> {record.get('data', 'N/A')}")
                         if record['name'] == SUBDOMAIN:
-                            wine_record_found = True
+                            img_record_found = True
                 
-                if not wine_record_found:
+                if not img_record_found:
                     print(f"  ⚠️  No A record found for {SUBDOMAIN}.{DOMAIN}")
             else:
                 print("  No records found")
@@ -306,7 +306,7 @@ if __name__ == "__main__":
     print("")
     print("📝 Subdomain Configuration")
     print("-" * 30)
-    default_subdomain = "wine"
+    default_subdomain = "img"
     subdomain_input = input(f"Enter subdomain for your app (default: {default_subdomain}): ").strip()
     SUBDOMAIN = subdomain_input if subdomain_input else default_subdomain
     
